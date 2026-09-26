@@ -1,0 +1,258 @@
+{
+  "entities": {
+    "Application": {
+      "title": "Application",
+      "description": "Student job application for FiLi Middle School Program with resume metadata and AI placement status",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the application record",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "studentName": {
+          "type": "string",
+          "description": "Full student legal name",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "studentEmail": {
+          "type": "string",
+          "description": "Student school or verified Google email address",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "studentAvatar": {
+          "type": "string",
+          "description": "Student avatar image URL or data URI",
+          "maxLength": 1000
+        },
+        "studentClass": {
+          "type": "string",
+          "description": "Middle school grade level (Grade 6, Grade 7, Grade 8)",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "section": {
+          "type": "string",
+          "description": "Class homeroom section",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "jobId": {
+          "type": "string",
+          "description": "Identifier of the middle school position applied for",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "jobTitle": {
+          "type": "string",
+          "description": "Human-readable job position title",
+          "maxLength": 100
+        },
+        "payout": {
+          "type": "string",
+          "description": "Monthly stipend or compensation amount",
+          "maxLength": 50
+        },
+        "submissionTimestamp": {
+          "type": "string",
+          "description": "ISO 8601 string representation of submission time",
+          "maxLength": 50
+        },
+        "submissionTimestampMs": {
+          "type": "number",
+          "description": "Millisecond precision timestamp for FCFS queue resolution"
+        },
+        "resumeFileName": {
+          "type": "string",
+          "description": "Original file name of the candidate PDF resume",
+          "maxLength": 200
+        },
+        "resumeFileSize": {
+          "type": "number",
+          "description": "File size in bytes of the uploaded PDF"
+        },
+        "resumeValidity": {
+          "type": "string",
+          "description": "Result of programmatic PDF parser verification",
+          "enum": ["valid", "invalid", "corrupted", "unreadable", "missing"]
+        },
+        "hasCertificates": {
+          "type": "boolean",
+          "description": "Whether the applicant provided certified skills/awards for preemption priority"
+        },
+        "certificateNames": {
+          "type": "array",
+          "description": "List of recognized qualification certificates"
+        },
+        "skillScore": {
+          "type": "number",
+          "description": "Applicant qualification score from 0 to 100"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the application",
+          "enum": [
+            "Approved",
+            "Pending Review",
+            "Waitlisted",
+            "Kicked Out (Displaced by Certified Candidate)",
+            "Disqualified (No Resume/Unqualified)",
+            "Rejected"
+          ]
+        },
+        "aiReasoning": {
+          "type": "string",
+          "description": "Summary explanation of automated qualification screening",
+          "maxLength": 2000
+        },
+        "aiAnalysis": {
+          "type": "object",
+          "description": "Detailed multi-factor analysis of student resume credentials"
+        },
+        "displacedCandidateName": {
+          "type": "string",
+          "description": "Name of displaced candidate if certificate preemption occurred",
+          "maxLength": 100
+        },
+        "displacedByCandidateName": {
+          "type": "string",
+          "description": "Name of certified candidate who triggered displacement",
+          "maxLength": 100
+        },
+        "displacementTimestamp": {
+          "type": "string",
+          "description": "Timestamp when displacement occurred",
+          "maxLength": 50
+        },
+        "adminNotes": {
+          "type": "string",
+          "description": "Internal administrative remarks",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "studentName",
+        "studentEmail",
+        "studentClass",
+        "section",
+        "jobId",
+        "jobTitle",
+        "submissionTimestamp",
+        "submissionTimestampMs",
+        "resumeValidity",
+        "hasCertificates",
+        "status"
+      ]
+    },
+    "SlotSettings": {
+      "title": "SlotSettings",
+      "description": "Global and individual job position intake configuration",
+      "type": "object",
+      "properties": {
+        "globalSlotsOpen": {
+          "type": "boolean",
+          "description": "Global master switch for application intake"
+        },
+        "closedJobIds": {
+          "type": "array",
+          "description": "List of job IDs whose intake is administratively closed"
+        },
+        "noticeMessage": {
+          "type": "string",
+          "description": "Administrative announcement message for applicants",
+          "maxLength": 500
+        },
+        "lastUpdated": {
+          "type": "string",
+          "description": "ISO timestamp of last setting change",
+          "maxLength": 50
+        },
+        "updatedBy": {
+          "type": "string",
+          "description": "Admin identity who modified slot settings",
+          "maxLength": 100
+        },
+        "skilledReservationPercent": {
+          "type": "number",
+          "description": "Percentage of job capacity reserved for skilled/certified applicants (default 25%)"
+        },
+        "jobSkilledReservationPercents": {
+          "type": "object",
+          "description": "Custom per-job skilled quota percentage overrides"
+        },
+        "jobMinSkillScores": {
+          "type": "object",
+          "description": "Custom per-job minimum skill scores required for skilled reservation qualification"
+        },
+        "jobSkilledRequirements": {
+          "type": "object",
+          "description": "Custom per-job certificate focus or specialized requirements for skilled candidate status"
+        },
+        "skilledReservationScope": {
+          "type": "string",
+          "description": "Whether skilled reservation applies to skilled roles only or all campus jobs",
+          "enum": ["skilled-roles-only", "all-jobs"]
+        }
+      },
+      "required": [
+        "globalSlotsOpen",
+        "closedJobIds"
+      ]
+    },
+    "AdminProfile": {
+      "title": "AdminProfile",
+      "description": "Authorized administrator record for role-based access control",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Verified administrator email address",
+          "maxLength": 120
+        },
+        "role": {
+          "type": "string",
+          "description": "Administrative authority role",
+          "enum": ["admin", "superadmin"]
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full name of administrator",
+          "maxLength": 100
+        },
+        "authorizedAt": {
+          "type": "string",
+          "description": "Timestamp of grant",
+          "maxLength": 50
+        }
+      },
+      "required": [
+        "email",
+        "role"
+      ]
+    }
+  },
+  "firestore": {
+    "/applications/{applicationId}": {
+      "schema": {
+        "$ref": "#/entities/Application"
+      },
+      "description": "Collection of student job applications and placement evaluation records"
+    },
+    "/slotSettings/global": {
+      "schema": {
+        "$ref": "#/entities/SlotSettings"
+      },
+      "description": "Singleton configuration document controlling application intake for all 19 positions"
+    },
+    "/admins/{adminId}": {
+      "schema": {
+        "$ref": "#/entities/AdminProfile"
+      },
+      "description": "Collection of authorized school administrators with elevated permissions"
+    }
+  }
+}

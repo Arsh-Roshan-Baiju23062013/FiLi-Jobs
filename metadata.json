@@ -1,0 +1,8 @@
+{
+  "name": "FiLi 3.2",
+  "description": "Mandatory job application and automated AI screening portal for Middle School Students featuring Google Authentication, First-Come First-Served queue sorting, and an Admin Dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

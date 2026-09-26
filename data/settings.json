@@ -1,0 +1,13 @@
+{
+  "globalSlotsOpen": true,
+  "closedJobIds": [],
+  "noticeMessage": "",
+  "lastUpdated": "2026-09-25T09:16:54.358Z",
+  "updatedBy": "FiLi Administration",
+  "skilledReservationPercent": 25,
+  "jobSkilledReservationPercents": {},
+  "skilledReservationScope": "skilled-roles-only",
+  "jobMinSkillScores": {},
+  "jobSkilledRequirements": {},
+  "jobCustomDetails": {}
+}

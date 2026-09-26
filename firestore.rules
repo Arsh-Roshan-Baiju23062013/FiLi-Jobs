@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Applications collection: Allow read and write for live sync
+    match /applications/{applicationId} {
+      allow read: if true;
+      allow create, update: if isValidId(applicationId);
+      allow delete: if isSignedIn();
+    }
+
+    // Slot settings collection (All 19 Middle School Roles)
+    match /slotSettings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Admins registry
+    match /admins/{adminId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}
