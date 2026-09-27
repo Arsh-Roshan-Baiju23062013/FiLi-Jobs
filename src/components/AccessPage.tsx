@@ -369,7 +369,7 @@ export const AccessPage: React.FC<AccessPageProps> = ({
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs flex items-start gap-3">
           <Briefcase className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
           <div className="space-y-0.5">
-            <h4 className="text-xs font-bold text-slate-900">19 Job Positions</h4>
+            <h4 className="text-xs font-bold text-slate-900">Campus Job Positions</h4>
             <p className="text-[11px] text-slate-500">
               Campus banking, STEM assistants, media team, library, and maintenance.
             </p>

@@ -561,7 +561,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
               Student Application Intake is Paused
             </div>
             <p>
-              The administration has temporarily closed all 19 position slots. Submissions are paused.
+              The administration has temporarily closed all position slots. Submissions are paused.
               You may review position details and prepare your PDF credentials in the meantime.
             </p>
           </div>

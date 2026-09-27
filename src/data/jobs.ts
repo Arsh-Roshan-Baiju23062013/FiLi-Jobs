@@ -22,18 +22,6 @@ export const FILI_JOBS: FiLiJob[] = [
     requirements: ['Environmental awareness', 'Physical diligence', 'Safety compliance', 'Team coordination']
   },
   {
-    id: 'pr-ambassador',
-    title: 'School PR Ambassador',
-    payout: '300 BRAED/Month (Max 2 per class)',
-    payoutAmount: 300,
-    category: 'Governance',
-    maxPerClass: 2,
-    totalQuota: 40,
-    isSkilledRole: true,
-    description: 'Official representative for guest delegations, prospective parent campus tours, ceremonial welcomes, and public speaking duties.',
-    requirements: ['Articulate communication', 'Polished public speaking', 'Exemplary conduct record', 'Extroverted confidence']
-  },
-  {
     id: 'student-banking',
     title: 'Student Banking Staff',
     payout: '220 BRAED/Month',
@@ -203,7 +191,7 @@ export const FILI_JOBS: FiLiJob[] = [
   }
 ];
 
-export const TOTAL_MIDDLE_SCHOOL_CAPACITY = 1180;
+export const TOTAL_MIDDLE_SCHOOL_CAPACITY = FILI_JOBS.reduce((acc, j) => acc + j.totalQuota, 0);
 
 export function isJobSkilledRole(jobId: string): boolean {
   const job = FILI_JOBS.find((j) => j.id === jobId);

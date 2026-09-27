@@ -53,10 +53,10 @@ const WALKTHROUGH_STEPS = [
   },
   {
     step: 2,
-    title: 'Browse 19 Campus Jobs',
+    title: 'Browse Campus Jobs',
     summary: 'Explore positions across Tech, Media, Athletics, Library, and more.',
     details:
-      'We have 19 distinct campus jobs tailored for middle schoolers (AV Crew, Peer Tutor, Library Aide, Tech Support, Greenhouse Tender, etc.). Check duties, requirements, and monthly stipends.',
+      'We have campus jobs tailored for middle schoolers (AV Crew, Peer Tutor, Library Aide, Tech Support, Greenhouse Tender, etc.). Check duties, requirements, and monthly stipends.',
     actionLabel: 'Browse Job Directory',
     actionType: 'directory',
   },
@@ -133,8 +133,8 @@ export const FiliChatbot: React.FC<FiliChatbotProps> = ({
     openJobsCount: number;
   }>({
     globalOpen: true,
-    remainingSpots: 1180,
-    openJobsCount: 19,
+    remainingSpots: 1140,
+    openJobsCount: 18,
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -147,7 +147,7 @@ export const FiliChatbot: React.FC<FiliChatbotProps> = ({
       role: 'model',
       text: `Hello${currentStudent ? ` ${currentStudent.name.split(' ')[0]}` : ''}! I'm **Arsh**, your personal FiLi Campus Placement Assistant! 🎓✨
 
-I know everything about our school's 19 job positions, live quota vacancies, student salaries, and the application process. 
+I know everything about our school's campus job positions, live quota vacancies, student salaries, and the application process. 
 
 I'm automatically updated with the latest live data from our administration. What can I help you with today?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -244,7 +244,7 @@ I'm automatically updated with the latest live data from our administration. Wha
         const errorMsg: ChatMessage = {
           id: `model-${Date.now()}`,
           role: 'model',
-          text: data.reply || "I'm having a slight connection blip, but our 19 campus jobs are listed right here in the directory!",
+          text: data.reply || "I'm having a slight connection blip, but our campus jobs are listed right here in the directory!",
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         };
         setMessages((prev) => [...prev, errorMsg]);
@@ -254,7 +254,7 @@ I'm automatically updated with the latest live data from our administration. Wha
       const offlineMsg: ChatMessage = {
         id: `model-${Date.now()}`,
         role: 'model',
-        text: `I'm **Arsh**, your FiLi guide! You can easily apply by signing in with your school Google account, picking one of our 19 campus jobs, and filling out your Grade & Section. Resumes are completely optional—you will never be disqualified!`,
+        text: `I'm **Arsh**, your FiLi guide! You can easily apply by signing in with your school Google account, picking one of our campus jobs, and filling out your Grade & Section. Resumes are completely optional—you will never be disqualified!`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, offlineMsg]);

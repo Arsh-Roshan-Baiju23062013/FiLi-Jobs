@@ -437,7 +437,7 @@ export function addApplication(app: Application): Application {
   const isCandidateSkilled = Boolean(app.hasCertificates || app.skillScore >= minRequiredScore);
   const certTitle = app.certificateNames?.[0] || 'Official Certificate';
 
-  // 1. Check Class Quota first (e.g., max 2 PR Ambassadors per class)
+  // 1. Check Class Quota first (if role has maxPerClass restriction)
   if (job.maxPerClass && currentClassApprovedCount >= job.maxPerClass) {
     app.status = 'Waitlisted';
     app.aiReasoning = `Waitlisted: The maximum quota for your class/grade (${job.maxPerClass} per class) has already been reached for this position.`;

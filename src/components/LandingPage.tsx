@@ -323,14 +323,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 19 Positions Directory & Exploration */}
+      {/* Positions Directory & Exploration */}
       <section className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-indigo-600" />
               <h3 className="text-xl font-bold text-slate-900">
-                19 Available Positions & Slot Capacities
+                {FILI_JOBS.length} Available Positions & Slot Capacities
               </h3>
             </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">

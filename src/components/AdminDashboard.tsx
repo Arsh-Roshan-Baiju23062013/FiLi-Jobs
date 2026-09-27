@@ -320,7 +320,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   };
 
   const handleCloseAllSlots = async () => {
-    if (!window.confirm('Close individual application slots for all 19 positions?')) return;
+    if (!window.confirm(`Close individual application slots for all ${FILI_JOBS.length} positions?`)) return;
     setIsTogglingSlot(true);
     try {
       const res = await fetch('/api/admin/slots/close-all-jobs', { method: 'POST' });
@@ -1075,7 +1075,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${
               activeTab === 'slots' ? 'bg-indigo-700 text-white' : 'bg-slate-100 text-slate-700'
             }`}>
-              {FILI_JOBS.length - slotSettings.closedJobIds.length}/19 Open
+              {FILI_JOBS.length - slotSettings.closedJobIds.length}/{FILI_JOBS.length} Open
             </span>
           </button>
         </div>
@@ -1171,7 +1171,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                 onChange={(e) => setJobFilter(e.target.value)}
                 className="text-xs px-3 py-2 border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-indigo-500 outline-hidden font-medium"
               >
-                <option value="all">All 19 Positions</option>
+                <option value="all">All Positions ({FILI_JOBS.length})</option>
                 {FILI_JOBS.map((j) => (
                   <option key={j.id} value={j.id}>
                     {j.title}
@@ -1486,7 +1486,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               / {(slotSettings.totalMaxCapacity ?? stats.totalCapacity ?? 1180).toLocaleString()} total capacity
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">Across all 19 middle school roles</p>
+          <p className="text-[11px] text-slate-500 mt-1">Across all {FILI_JOBS.length} middle school roles</p>
         </div>
 
         <div className="bg-indigo-50/70 border-2 border-indigo-200 rounded-2xl p-4 shadow-xs">
@@ -1504,7 +1504,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           </div>
           <p className="text-[11px] text-indigo-900/80 mt-1">
             {slotSettings.skilledReservationScope === 'all-jobs'
-              ? 'Enforced across all 19 positions'
+              ? `Enforced across all ${FILI_JOBS.length} positions`
               : 'Applies to tech & skilled teams'}
           </p>
         </div>
@@ -1796,7 +1796,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                     className="mt-0.5 accent-indigo-400"
                   />
                   <div>
-                    <div className="text-xs font-bold">Apply to All 19 Campus Job Positions</div>
+                    <div className="text-xs font-bold">Apply to All Campus Job Positions</div>
                     <div className="text-[11px] text-indigo-300">Enforces the {customReservationPercent}% skilled quota uniformly across every role.</div>
                   </div>
                 </label>
@@ -1835,7 +1835,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               <Sliders className="w-4 h-4 text-amber-400" />
               <span>Edit Skilled Candidate Separately for Each Role</span>
               <span className="text-[10px] bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/30">
-                19 Roles Configurable
+                {FILI_JOBS.length} Roles Configurable
               </span>
             </div>
             <p className="text-xs text-indigo-300/90">
@@ -1884,7 +1884,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           <div>
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <SlidersHorizontal className="w-4 h-4 text-indigo-600" />
-              Manage Slots for All 19 Job Positions
+              Manage Slots for All Job Positions ({FILI_JOBS.length})
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
               Open or close individual position slots at any time. When a slot is closed, students cannot submit applications for that position.
@@ -1901,7 +1901,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Check className="w-3.5 h-3.5" />
-              <span>Open All 19 Positions</span>
+              <span>Open All Positions</span>
             </button>
 
             <button
@@ -1912,7 +1912,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               className="px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Ban className="w-3.5 h-3.5" />
-              <span>Close All 19 Positions</span>
+              <span>Close All Positions</span>
             </button>
           </div>
         </div>
@@ -1951,7 +1951,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         </div>
       </div>
 
-      {/* 19 Positions Table with One-Click Slot Toggle */}
+      {/* Positions Table with One-Click Slot Toggle */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">

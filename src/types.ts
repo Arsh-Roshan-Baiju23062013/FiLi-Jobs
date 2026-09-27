@@ -14,7 +14,7 @@ export interface FiLiJob {
   payout: string; // e.g. "200 BRAED/Month"
   payoutAmount: number;
   category: string;
-  maxPerClass?: number; // e.g. 2 for School PR Ambassador
+  maxPerClass?: number; // e.g. maximum per class if restricted
   totalQuota: number; // e.g. 60
   description: string;
   requirements: string[];

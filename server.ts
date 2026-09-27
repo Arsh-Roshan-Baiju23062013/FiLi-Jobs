@@ -34,7 +34,7 @@ import { Application } from './src/types.js';
 
 dotenv.config();
 
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const ADMIN_USERNAME = 'admin_fili';
 const ADMIN_PASSWORD = 'fili_secure_2026';
 

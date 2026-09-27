@@ -73,7 +73,7 @@ export function buildLiveAppContext(studentContext?: StudentChatContext): string
   const totalApproved = stats?.totalApproved ?? applications.filter((a) => a.status === 'Approved').length;
   const totalRemaining = Math.max(0, totalMaxCapacity - totalApproved);
 
-  // Summarize all 19 jobs with live capacity
+  // Summarize all campus jobs with live capacity
   const jobsSummary = effectiveJobs
     .map((j) => {
       const quota = settings.jobCustomQuotas?.[j.id] ?? j.totalQuota;
@@ -118,7 +118,7 @@ export function buildLiveAppContext(studentContext?: StudentChatContext): string
 • User Context: ${studentInfoStr}
 • Current Page View: ${studentContext?.clientView || 'Main Portal'}
 
-=== ALL 19 CAMPUS JOBS & LIVE VACANCY STATUS ===
+=== ALL CAMPUS JOBS & LIVE VACANCY STATUS ===
 ${jobsSummary}
 
 === OFFICIAL SCHOOL RULES & POLICIES (MANDATORY) ===
@@ -176,13 +176,13 @@ On the outside launcher button, you are called "FiLi Bot", but when students cli
 YOUR MISSION:
 1. Explain to students how the FiLi Job Portal works, why campus jobs are mandatory for all 1,180 middle schoolers, and how they earn stipends/credits.
 2. Walk students through the application process step-by-step whenever asked.
-3. Answer any questions about all 19 jobs, open vacancies, requirements, salaries, and capacity.
+3. Answer any questions about all campus jobs, open vacancies, requirements, salaries, and capacity.
 4. Explain the school rules clearly (Single-job rule, Re-application after being fired, No-disqualification resume policy).
 5. Always rely on the provided REAL-TIME APP STATE. You are omniscient about this app: you know every current quota, open/closed slot, deadline, and student status. If an admin changed anything, your state is automatically up-to-date!
 
 STEP-BY-STEP APPLICATION WALKTHROUGH GUIDE (USE WHEN ASKED HOW TO APPLY OR FOR A WALKTHROUGH):
 - Step 1: Sign in with your Google account via the Access Portal. (Parents can also sign in, but must enter the student's legal name).
-- Step 2: Browse the 19 Job Positions in the Directory or Job List to find one that fits your interests (Tech, Creative, Leadership, Outdoors, Organization).
+- Step 2: Browse the Job Positions in the Directory or Job List to find one that fits your interests (Tech, Creative, Leadership, Outdoors, Organization).
 - Step 3: Check that the job status is "Open" and has available capacity.
 - Step 4: Go to the Application Form. Fill in your Grade/Class (6th, 7th, 8th), Section (A, B, C...), and select your desired role.
 - Step 5: (Optional) Upload a PDF Resume if you have certificates or awards. (Remind them: NO RESUME? No problem! You will still be placed in the general First-Come First-Served slot; you will NEVER be disqualified!).
@@ -323,7 +323,7 @@ function generateFallbackReply(
   if (lower.includes('hello') || lower.includes('hi') || lower.includes('who are you')) {
     return `Hello! I'm **Arsh**, your personal FiLi Campus Placement Assistant! 🎓✨
 
-I know all the details about our school's 19 job positions, live quota vacancies, application steps, and school rules. 
+I know all the details about our school's job positions, live quota vacancies, application steps, and school rules. 
 
 Currently, there are **${openJobsCount} positions with open slots**! How can I help you today?
 - Ask me for a **step-by-step walkthrough** of how to apply.
@@ -335,7 +335,7 @@ Currently, there are **${openJobsCount} positions with open slots**! How can I h
     return `Here is your **Official FiLi Step-by-Step Application Walkthrough**:
 
 1. **Step 1: Sign In** — Head to the Access Portal and sign in with your official school Google account. (Parents can also log in on your behalf, but must include your full legal student name).
-2. **Step 2: Browse Positions** — Look through our 19 campus jobs to find a role that fits your interests (Tech, Media, Athletics, Library, Arts, Stage, or Greenhouse).
+2. **Step 2: Browse Positions** — Look through our campus jobs to find a role that fits your interests (Tech, Media, Athletics, Library, Arts, Stage, or Greenhouse).
 3. **Step 3: Check Slot Availability** — Ensure the job has open capacity (FCFS is active!). Right now, **${openJobsCount} jobs are accepting applications**.
 4. **Step 4: Complete the Form** — Enter your Grade (6th, 7th, 8th), Section (A, B, C...), and select your chosen job role.
 5. **Step 5: Upload Resume (Optional)** — If you have certificates or credentials, upload a PDF resume. **Important: If you have no resume or no experience, do not worry! You will NEVER be disqualified.** You will simply be admitted into the general FCFS pool!

@@ -331,7 +331,7 @@ export default function App() {
                   onClick={() => setStudentViewMode('directory')}
                   className="text-xs font-bold text-indigo-600 hover:text-indigo-800 underline cursor-pointer"
                 >
-                  ← Browse All 19 Job Roles & Slot Status
+                  ← Browse All Job Roles & Slot Status
                 </button>
               </div>
 
